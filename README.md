@@ -21,12 +21,23 @@ Production-oriented Node.js backend for a rewards platform integrating BitLabs O
 ## BitLabs
 BitLabs Offers v2 reference: https://developer.bitlabs.ai/reference/getoffersv2
 
-## Run
+## Run (Backend)
 ```bash
 cp .env.example .env
 npm install
 npm start
 ```
+
+## Frontend Bootstrap (React)
+A starter React app is available under `frontend/`.
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The frontend dev server proxies `/api` and `/webhooks` to `http://localhost:3000`.
 
 ## Test
 ```bash
