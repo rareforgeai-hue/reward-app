@@ -5,7 +5,12 @@
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; min-height: 100vh; background: radial-gradient(circle at top, #1e293b, #0f172a 50%); }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1e293b, #0f172a 50%);
+}
 
 .app-shell {
   max-width: 960px;
@@ -15,6 +20,26 @@ body { margin: 0; min-height: 100vh; background: radial-gradient(circle at top, 
 
 .app-header h1 { margin: 0; font-size: 2rem; }
 .app-header p { margin-top: 0.5rem; color: #b6c3e5; }
+
+.token-box {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.token-box label {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.token-box input {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: #0b1328;
+  color: #e8ecff;
+  padding: 0.65rem 0.8rem;
+}
 
 .tabs {
   display: flex;
@@ -44,5 +69,64 @@ body { margin: 0; min-height: 100vh; background: radial-gradient(circle at top, 
   background: rgba(15, 23, 42, 0.7);
 }
 
-h2 { margin-top: 0; }
-p { color: #b6c3e5; }
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.muted { color: #b6c3e5; }
+.error { color: #fca5a5; }
+
+.card-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.card {
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.card h3, .card h4 { margin: 0 0 0.35rem; }
+.card p { margin: 0; }
+
+.badge {
+  align-self: start;
+  border: 1px solid #2563eb;
+  color: #93c5fd;
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+.wallet-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.metric {
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 0.75rem;
+}
+
+.metric p { margin: 0; }
+.metric strong { font-size: 1.25rem; }
+
+.metric-right {
+  text-align: right;
+  display: grid;
+  gap: 0.15rem;
+}
