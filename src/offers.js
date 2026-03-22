@@ -34,7 +34,7 @@ async function fetchBitlabsOffers(query = {}) {
 }
 
 async function getOffers(req, res) {
-  if (!config.bitlabs.apiToken) return res.status(500).json({ error: 'BITLABS_API_KEY is required' });
+  if (!config.bitlabs.apiToken) return res.status(500).json({ error: 'BITLABS_OFFERS_V2_TOKEN (or BITLABS_API_KEY) is required' });
 
   const cacheKey = cacheKeyFromQuery(req.query);
   const nowIso = new Date().toISOString();
