@@ -12,5 +12,6 @@ module.exports = {
     webhookSecret: process.env.BITLABS_WEBHOOK_SECRET || ''
   },
   cacheTtlSeconds: Number(process.env.OFFERS_CACHE_TTL_SECONDS || 120),
+  bitlabsTimeoutMs: Number(process.env.BITLABS_TIMEOUT_MS || 8000),
   dbPath: process.env.DB_PATH || './data/reward-app.db'
 };
