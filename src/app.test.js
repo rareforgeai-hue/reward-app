@@ -68,6 +68,21 @@ describe('reward-app API', () => {
     expect(global.fetch).toHaveBeenCalledTimes(1);
   });
 
+  test('returns 504 when BitLabs offer request times out', async () => {
+    const reg = await request(app).post('/api/auth/register').send({ email: 'timeout@example.com', password: 'Password123' });
+
+    const timeoutError = new Error('timed out');
+    timeoutError.name = 'AbortError';
+    global.fetch.mockRejectedValue(timeoutError);
+
+    const res = await request(app)
+      .get('/api/offers?country=US')
+      .set('Authorization', `Bearer ${reg.body.token}`);
+
+    expect(res.status).toBe(504);
+    expect(res.body.error).toBe('BitLabs fetch timeout');
+  });
+
   test('bitlabs conversion webhook credits approved conversions and ignores duplicates', async () => {
     const reg = await request(app).post('/api/auth/register').send({ email: 'webhook@example.com', password: 'Password123' });
     const userToken = reg.body.token;

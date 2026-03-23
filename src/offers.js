@@ -14,12 +14,28 @@ async function fetchBitlabsOffers(query = {}) {
   });
   if (config.bitlabs.appId) url.searchParams.set('app_id', config.bitlabs.appId);
 
-  const response = await fetch(url.toString(), {
-    headers: {
-      'X-Api-Token': config.bitlabs.apiToken,
-      Accept: 'application/json'
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), config.bitlabsTimeoutMs);
+
+  let response;
+  try {
+    response = await fetch(url.toString(), {
+      headers: {
+        'X-Api-Token': config.bitlabs.apiToken,
+        Accept: 'application/json'
+      },
+      signal: controller.signal
+    });
+  } catch (error) {
+    if (error?.name === 'AbortError') {
+      const err = new Error('BitLabs fetch timeout');
+      err.status = 504;
+      throw err;
     }
-  });
+    throw error;
+  } finally {
+    clearTimeout(timeout);
+  }
 
   const text = await response.text();
   let payload;
